@@ -84,12 +84,14 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-Cartera/AFNetworking.framework"
   install_framework "Pods-Cartera/Bolts.framework"
   install_framework "Pods-Cartera/Parse.framework"
+  install_framework "Pods-Cartera/SwiftHTTP.framework"
+  install_framework "Pods-Cartera/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-Cartera/AFNetworking.framework"
   install_framework "Pods-Cartera/Bolts.framework"
   install_framework "Pods-Cartera/Parse.framework"
+  install_framework "Pods-Cartera/SwiftHTTP.framework"
+  install_framework "Pods-Cartera/SwiftyJSON.framework"
 fi
