@@ -8,20 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		3A6850941C814C680015F10F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6850931C814C680015F10F /* AppDelegate.swift */; };
-		3A6850961C814C680015F10F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6850951C814C680015F10F /* ViewController.swift */; };
+		3A6850961C814C680015F10F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6850951C814C680015F10F /* LoginViewController.swift */; };
 		3A6850991C814C680015F10F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A6850971C814C680015F10F /* Main.storyboard */; };
 		3A68509B1C814C680015F10F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A68509A1C814C680015F10F /* Assets.xcassets */; };
 		3A68509E1C814C680015F10F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A68509C1C814C680015F10F /* LaunchScreen.storyboard */; };
+		3A6850A71C8169E90015F10F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6850A61C8169E90015F10F /* MainViewController.swift */; };
+		3A6850AA1C816B710015F10F /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6850A91C816B710015F10F /* MainCell.swift */; };
+		69373CDE8786168F778530A1 /* Pods_Cartera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B40DE4652B9B118CBAD59D0 /* Pods_Cartera.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3A6850901C814C680015F10F /* Cartera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cartera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A6850931C814C680015F10F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3A6850951C814C680015F10F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3A6850951C814C680015F10F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3A6850981C814C680015F10F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3A68509A1C814C680015F10F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A68509D1C814C680015F10F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A68509F1C814C680015F10F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A6850A61C8169E90015F10F /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		3A6850A91C816B710015F10F /* MainCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
+		3B40DE4652B9B118CBAD59D0 /* Pods_Cartera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cartera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BCCFAB98952994CB70C3F7B /* Pods-Cartera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cartera.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cartera/Pods-Cartera.debug.xcconfig"; sourceTree = "<group>"; };
+		C0B0E4A443DB8168272131E2 /* Pods-Cartera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cartera.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cartera/Pods-Cartera.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69373CDE8786168F778530A1 /* Pods_Cartera.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +49,8 @@
 			children = (
 				3A6850921C814C680015F10F /* Cartera */,
 				3A6850911C814C680015F10F /* Products */,
+				B2E27925AE455AEB9793FFBE /* Pods */,
+				426757BDF172BEA5F8E13203 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +65,49 @@
 		3A6850921C814C680015F10F /* Cartera */ = {
 			isa = PBXGroup;
 			children = (
+				3A6850A81C816B590015F10F /* Models */,
+				3A6850A51C81686D0015F10F /* Views */,
 				3A6850931C814C680015F10F /* AppDelegate.swift */,
-				3A6850951C814C680015F10F /* ViewController.swift */,
 				3A6850971C814C680015F10F /* Main.storyboard */,
 				3A68509A1C814C680015F10F /* Assets.xcassets */,
 				3A68509C1C814C680015F10F /* LaunchScreen.storyboard */,
 				3A68509F1C814C680015F10F /* Info.plist */,
 			);
 			path = Cartera;
+			sourceTree = "<group>";
+		};
+		3A6850A51C81686D0015F10F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3A6850951C814C680015F10F /* LoginViewController.swift */,
+				3A6850A61C8169E90015F10F /* MainViewController.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		3A6850A81C816B590015F10F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3A6850A91C816B710015F10F /* MainCell.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		426757BDF172BEA5F8E13203 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3B40DE4652B9B118CBAD59D0 /* Pods_Cartera.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B2E27925AE455AEB9793FFBE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8BCCFAB98952994CB70C3F7B /* Pods-Cartera.debug.xcconfig */,
+				C0B0E4A443DB8168272131E2 /* Pods-Cartera.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +117,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3A6850A21C814C680015F10F /* Build configuration list for PBXNativeTarget "Cartera" */;
 			buildPhases = (
+				96A1A7B62A9D16DAECB7F8E8 /* Check Pods Manifest.lock */,
 				3A68508C1C814C680015F10F /* Sources */,
 				3A68508D1C814C680015F10F /* Frameworks */,
 				3A68508E1C814C680015F10F /* Resources */,
+				A87A43AE1939035B38B1EA6A /* Embed Pods Frameworks */,
+				6363F996A6DC0E3A371C33F7 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -131,12 +180,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6363F996A6DC0E3A371C33F7 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cartera/Pods-Cartera-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96A1A7B62A9D16DAECB7F8E8 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A87A43AE1939035B38B1EA6A /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cartera/Pods-Cartera-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3A68508C1C814C680015F10F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A6850961C814C680015F10F /* ViewController.swift in Sources */,
+				3A6850A71C8169E90015F10F /* MainViewController.swift in Sources */,
+				3A6850961C814C680015F10F /* LoginViewController.swift in Sources */,
+				3A6850AA1C816B710015F10F /* MainCell.swift in Sources */,
 				3A6850941C814C680015F10F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,6 +345,7 @@
 		};
 		3A6850A31C814C680015F10F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8BCCFAB98952994CB70C3F7B /* Pods-Cartera.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Cartera/Info.plist;
@@ -257,6 +357,7 @@
 		};
 		3A6850A41C814C680015F10F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0B0E4A443DB8168272131E2 /* Pods-Cartera.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Cartera/Info.plist;
@@ -285,6 +386,7 @@
 				3A6850A41C814C680015F10F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
