@@ -11,8 +11,12 @@ import UIKit
 class MainCell: UITableViewCell {
     
     @IBOutlet weak var avatarImage: UIImageView!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var requestStatusText: UILabel!
+    @IBOutlet weak var distanceStamp: UILabel!
+    @IBOutlet weak var timeStamp: UILabel!
+    @IBOutlet weak var amount: UILabel!
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
