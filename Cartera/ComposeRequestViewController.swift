@@ -18,7 +18,7 @@ class ComposeRequestViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     
     let backButton = UIImage(named: "cancelButton")
-    
+    var location: CLLocationCoordinate2D?
     var currentRequest: Request?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +48,7 @@ class ComposeRequestViewController: UIViewController {
     
     @IBAction func amountFieldValueBeginChange(sender: AnyObject) {
         amountField.textColor = UIColor.whiteColor()
-        amountField.text! += "$"
+        //amountField.text! += "$"
 
         print("entered editing")
     }
@@ -99,12 +99,14 @@ class ComposeRequestViewController: UIViewController {
             }
         })
     }
-//    func composeParams() -> NSDictionary {
-//        return [
-//            "user": _currentUser!,
-//            "amount": Int(amountField.text!)!
-//        ]
-//    }
+    func composeParams() -> NSDictionary {
+        return [
+            "user": _currentUser!,
+            "amount": Int(amountField.text!)!,
+            "latitude": (location?.latitude)!,
+            "longitude": (location?.longitude)!
+        ]
+    }
     /*
     // MARK: - Navigation
 

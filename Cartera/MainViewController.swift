@@ -70,29 +70,21 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         return cell
     }
-    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == "composeSegue" {
-//            print("modal segue activated")
-////            let compose = ComposeRequestViewController()
-////            compose.composeView.backgroundColor = UIColor(red: 63, green: 81, blue: 181, alpha: 255)
-//        }
-//    }
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "composeSegue" {
-            print("modal segue activated")
+            let vc = segue.destinationViewController as! ComposeRequestViewController
+            vc.location = lastLocation
+            
         }
     }
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        print("change authorization satuttas")
         if status == CLAuthorizationStatus.AuthorizedWhenInUse {
-            print("change authorization satuttas")
             manager.startUpdatingLocation()
         }
     }
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         var location = locations.first! as CLLocation
         lastLocation = location.coordinate
-        print(lastLocation)
     }
 }

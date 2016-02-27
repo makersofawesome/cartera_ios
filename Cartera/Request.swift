@@ -14,7 +14,8 @@ class Request: NSObject {
     
     var requester: User!
     var amount: Int?
-    var geocode: String?
+    var latitude: Float?
+    var longitude: Float?
     
     /*
      * Pass in params to initialize
@@ -23,6 +24,8 @@ class Request: NSObject {
     init(params: NSDictionary){
         self.requester = params["user"] as! User
         self.amount = params["amount"] as! Int
+        self.latitude = params["latitude"] as! Float
+        self.longitude = params["longitude"] as! Float
         
     }
     
@@ -32,6 +35,8 @@ class Request: NSObject {
             print("requester id \(requester.id)")
             post.setObject(requester.id!, forKey: "requesterId")
             post.setObject(amount!, forKey: "amount")
+            post.setObject(latitude!, forKey: "latitude")
+            post.setObject(longitude!, forKey: "longitude")
             post.saveInBackgroundWithBlock(completion)
         }
     }
@@ -40,7 +45,7 @@ class Request: NSObject {
         var requestList = [Request]()
         
         for user in users {
-            let params = ["user":user, "amount":1]
+            let params = ["user":user, "amount":1, "latitude":1, "longitude":1]
             requestList.append(Request(params: params))
         }
         return requestList
