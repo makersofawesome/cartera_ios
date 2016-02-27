@@ -16,6 +16,7 @@ class ComposeRequestViewController: UIViewController {
     @IBOutlet weak var amountField: UITextField!
     @IBOutlet var composeView: UIView!
     @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var dollarSign: UILabel!
     
     let backButton = UIImage(named: "cancelButton")
     var location: CLLocationCoordinate2D?
@@ -81,15 +82,15 @@ class ComposeRequestViewController: UIViewController {
         navigationController?.popViewControllerAnimated(true)
     }
     
-    @IBAction func toMainVC(sender: UIButton) {
-        backButtonPressed(cancelButton)
-    }
+//    @IBAction func toMainVC(sender: UIButton) {
+//        backButtonPressed(cancelButton)
+//    }
     
 
 
     @IBAction func onCompose(sender: AnyObject) {
         //need user and amount
-        currentRequest = Request(params: composeParams())
+//        currentRequest = Request(params: composeParams())
         currentRequest!.postOpenRequest( withCompletion: {
             (success: Bool, error: NSError?) -> Void in
             if success {
