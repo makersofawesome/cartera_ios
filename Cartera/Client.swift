@@ -9,8 +9,10 @@
 import UIKit
 import SwiftHTTP
 import SwiftyJSON
+import Alamofire
+//import nessie-ios-sdk-swift2
 
-class Client: NSObject {
+class Client: NSObject {//NSEClient {
     
     var baseUrl: String!
     var apiKey: String!
@@ -33,7 +35,7 @@ class Client: NSObject {
                     print("error: \(err.localizedDescription)")
                     return
                 }
-                 data = response.data
+                data = response.data
             }
         } catch let error {
             print("got an error creating the request: \(error)")
@@ -90,26 +92,44 @@ class Client: NSObject {
         }
         return JSON(data: data)
     }
-    func createTransfersWithParams(id: String, params: NSDictionary) {
+    func createTransferWithParams(id: String) {
         
-        let params = ["medium":"balance",
-            "payee_id":"56c66be6a73e492741507e0e",
-            "amount":100,
-            "transaction_date":"2016-02-27",
-            "status":"pending",
-            "description":"first transaction"]
-        do {
-            let opt = try HTTP.POST(createRequestUrl("accounts/\(id)/transfers"), parameters: params)
-            opt.start { response in
-                print(response.description)
+        let requestDictionary = [
+            "medium": "balance",
+            "payee_id": "56c66be6a73e492741507e0c",
+            "amount": 1,
+            "transaction_date": "2016-02-27",
+            "status": "pending",
+            "description": "string"
+        ]
+        
+        
+        let url: NSURL = NSURL(string: createRequestUrl("accounts/\(id)/transfers"))!
+        let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.HTTPMethod = "POST"
+        request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(requestDictionary, options: [])
+        print(NSString(data: request.HTTPBody!, encoding:NSUTF8StringEncoding)!)
+        
+        let queue:NSOperationQueue = NSOperationQueue()
+        NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler:{ (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+            if response != nil{
+                do {
+                    let parsed = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
+                    print(parsed)
+                }
+                catch let error as NSError {
+                    print("A JSON parsing error occurred, here are the details:\n \(error)")
+                }
             }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
+            else{
+                print("response null from metrics");
+            }
+        })
     }
     
     func createRequestUrl(request: String) -> String{
-        print("\(baseUrl)\(request)?key=\(apiKey)")
         return "\(baseUrl)\(request)?key=\(apiKey)"
     }
 }
