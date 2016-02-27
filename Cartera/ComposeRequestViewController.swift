@@ -8,11 +8,13 @@
 
 import UIKit
 import MoneyFramework
+import Parse
 
 class ComposeRequestViewController: UIViewController {
 
+ 
     @IBOutlet weak var amountField: UITextField!
-    
+    var currentRequest: Request?
     override func viewDidLoad() {
         super.viewDidLoad()
 //        if amountField.editing {
@@ -39,8 +41,25 @@ class ComposeRequestViewController: UIViewController {
         amountField.textColor = UIColor.whiteColor()
         print("entered editing")
     }
-
-
+    
+    @IBAction func onCompose(sender: AnyObject) {
+        //need user and amount
+        currentRequest = Request(params: composeParams())
+        currentRequest!.postOpenRequest( withCompletion: {
+            (success: Bool, error: NSError?) -> Void in
+            if success {
+                print("success posting")
+            } else {
+                print(error!.localizedDescription)
+            }
+        })
+    }
+    func composeParams() -> NSDictionary {
+        return [
+            "user": _currentUser!,
+            "amount": Int(amountField.text!)!
+        ]
+    }
     /*
     // MARK: - Navigation
 
