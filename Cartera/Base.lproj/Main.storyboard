@@ -156,7 +156,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Aqs-fe-6W7">
-                        <barButtonItem key="rightBarButtonItem" title="Compose request" id="BFu-AV-HHT"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="fha-gs-dHz">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="guO-KH-W9A">
+                                <rect key="frame" x="272" y="6" width="32" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="composeButton"/>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m1a-lf-85M" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -195,6 +201,24 @@
             </objects>
             <point key="canvasLocation" x="1329" y="298"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="vmc-Ap-sBx">
+            <objects>
+                <viewController id="Inf-t4-eTK" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wB1-NK-Ptw"/>
+                        <viewControllerLayoutGuide type="bottom" id="WzE-He-tjp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FTx-to-mBD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bDX-2g-mix" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1717" y="298"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="lwl-JV-fjw">
             <objects>
@@ -214,4 +238,7 @@
             <point key="canvasLocation" x="130" y="298"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="composeButton" width="700" height="700"/>
+    </resources>
 </document>

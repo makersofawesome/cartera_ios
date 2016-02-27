@@ -12,6 +12,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        var image = UIImage(named: "composeButton")
+//        image = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
 
         // Do any additional setup after loading the view.
     }
