@@ -15,6 +15,9 @@ class ComposeRequestViewController: UIViewController {
  
     @IBOutlet weak var amountField: UITextField!
     @IBOutlet var composeView: UIView!
+    @IBOutlet weak var cancelButton: UIButton!
+    
+    let backButton = UIImage(named: "cancelButton")
     
     var currentRequest: Request?
     override func viewDidLoad() {
@@ -24,6 +27,14 @@ class ComposeRequestViewController: UIViewController {
 //            amountField.textColor = UIColor.whiteColor()
 //            print("entered editing state")
 //        } *not running
+        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 63, green: 81, blue: 181, alpha: 255)
+        self.navigationItem.backBarButtonItem?.image = UIImage(named: "cancelButton")
+//        self.navigationItem.backBarButtonItem = UIBarButtonItem(image: backButton, style: .Plain, target: self, action: nil)
+//        self.navigationItem.leftBarButtonItem =
+//            UIBarButtonItem(image:backButton, style:.Plain, target:self, action:"backButtonPressed:")
+
+        print("button should be changed")
         
         
         // Do any additional setup after loading the view.
@@ -37,21 +48,27 @@ class ComposeRequestViewController: UIViewController {
     
     @IBAction func amountFieldValueBeginChange(sender: AnyObject) {
         amountField.textColor = UIColor.whiteColor()
+        amountField.text! += "$"
+
         print("entered editing")
     }
     
     @IBAction func amountFieldValueChanged(sender: AnyObject) {
         amountField.textColor = UIColor.whiteColor()
+        amountField.placeholder = nil
         print("entered editing")
+        formatCurrency(amountField.text!)
     }
     
     func formatCurrency(string: String) {
         print("format \(string)")
+        
         let formatter = NSNumberFormatter()
         formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
         formatter.locale = NSLocale(localeIdentifier: "en_US")
-        var numberFromField = (NSString(string: string).doubleValue)/100
-        amountField.text = formatter.stringFromNumber(numberFromField)
+//        var numberFromField = (NSString(string: string).doubleValue)/100
+//        print(numberFromField)
+//        amountField.text = formatter.stringFromNumber(numberFromField)
         print(amountField.text)
     }
     
@@ -60,8 +77,12 @@ class ComposeRequestViewController: UIViewController {
 //        self.navigationController!.popToViewController(viewControllers[viewControllers.count - 1], animated: true)
 //    }
     
+    func backButtonPressed(sender:UIButton) {
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
     @IBAction func toMainVC(sender: UIButton) {
-//        returnToMainVC()
+        backButtonPressed(cancelButton)
     }
     
 
@@ -78,12 +99,12 @@ class ComposeRequestViewController: UIViewController {
             }
         })
     }
-    func composeParams() -> NSDictionary {
-        return [
-            "user": _currentUser!,
-            "amount": Int(amountField.text!)!
-        ]
-    }
+//    func composeParams() -> NSDictionary {
+//        return [
+//            "user": _currentUser!,
+//            "amount": Int(amountField.text!)!
+//        ]
+//    }
     /*
     // MARK: - Navigation
 

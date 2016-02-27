@@ -8,6 +8,9 @@
 
 import UIKit
 import Parse
+import CoreLocation
+
+var locationManager: CLLocationManager!
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -19,6 +22,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        locationManager = CLLocationManager()
+        locationManager.requestWhenInUseAuthorization()
         self.navigationItem.setHidesBackButton(true, animated:false)
         tableView.delegate = self
         tableView.dataSource = self
@@ -61,11 +66,13 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "composeSegue" {
-            print("modal segue activated")
-        }
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "composeSegue" {
+//            print("modal segue activated")
+////            let compose = ComposeRequestViewController()
+////            compose.composeView.backgroundColor = UIColor(red: 63, green: 81, blue: 181, alpha: 255)
+//        }
+//    }
     
     
     

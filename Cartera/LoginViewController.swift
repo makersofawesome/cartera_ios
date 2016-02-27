@@ -13,9 +13,12 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var userField: UITextField!
+    @IBOutlet var mainView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = true
+        mainView.backgroundColor = UIColor(red: 63, green: 81, blue: 181, alpha: 255)
         // Do any additional setup after loading the view, typically from a nib.
         print("loaded")
     }
