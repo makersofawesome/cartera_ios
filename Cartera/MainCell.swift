@@ -21,9 +21,8 @@ class MainCell: UITableViewCell {
     
     var request: Request! {
         didSet {
-            name.text = "\(request.user.username!)"
-            print(name.text)
-//            avatarImage = UIImageView(frame: CGRectMake(0, 0, 100, 100))
+            name.text = "\(request.requester.username!)"
+            //            avatarImage = UIImageView(frame: CGRectMake(0, 0, 100, 100))
 //            avatarImage.layer.cornerRadius = 8.0
 //            avatarImage.clipsToBounds = true
             

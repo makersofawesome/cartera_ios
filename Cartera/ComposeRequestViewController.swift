@@ -93,7 +93,7 @@ class ComposeRequestViewController: UIViewController {
         currentRequest!.postOpenRequest( withCompletion: {
             (success: Bool, error: NSError?) -> Void in
             if success {
-                print("success posting")
+                print("success requesting for \(self.currentRequest?.amount)")
             } else {
                 print(error!.localizedDescription)
             }

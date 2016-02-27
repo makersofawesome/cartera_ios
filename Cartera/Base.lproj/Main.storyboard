@@ -53,7 +53,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Cartera" id="5DC-lU-UGs"/>
                     <connections>
-                        <outlet property="mainView" destination="8bC-Xf-vdC" id="XVg-1s-sfF"/>
                         <outlet property="passwordField" destination="0zM-CQ-cGL" id="6bT-vU-nTg"/>
                         <outlet property="userField" destination="Kbj-c9-nmB" id="9wR-n8-dxi"/>
                         <segue destination="Zob-zo-8AO" kind="push" identifier="loginToMain" id="Enk-wM-c2B"/>

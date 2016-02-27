@@ -9,7 +9,6 @@
 import UIKit
 import SwiftHTTP
 import SwiftyJSON
-//import nessie-ios-sdk-swift2
 
 
 class Client: NSObject {//NSEClient {
@@ -92,7 +91,7 @@ class Client: NSObject {//NSEClient {
         }
         return JSON(data: data)
     }
-    func createTransferWithParams(id: String, ) {
+    func createTransferWithParams(id: String) {
         
         let requestDictionary = [
             "medium": "balance",

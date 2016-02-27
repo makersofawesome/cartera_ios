@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = nvc
             nvc.pushViewController(vc, animated: false)
             print("Current user detected")
+            _currentUser = User(object: PFUser.currentUser()!)          
         }
         
         return true

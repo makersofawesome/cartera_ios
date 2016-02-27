@@ -12,10 +12,12 @@ import CoreLocation
 
 var locationManager: CLLocationManager!
 
-class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    
+    var locationManager: CLLocationManager!
+    var lastLocation : CLLocationCoordinate2D!
     var users: [User]?
     var requests: [Request]?
     
@@ -27,6 +29,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.navigationItem.setHidesBackButton(true, animated:false)
         tableView.delegate = self
         tableView.dataSource = self
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.distanceFilter = 200
+        locationManager.requestWhenInUseAuthorization()
         loadUsers()
     }
     func loadUsers() {
@@ -35,7 +42,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if let media = media {
                 self.users = User.usersWithArray(media)
                 self.requests = Request.requestsWithArray(self.users!)
-                print(self.users)
                 self.tableView.reloadData()
             } else {
                 // handle error
@@ -49,7 +55,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let data = users {
+        if let data = requests {
             return data.count
         }
         else {
@@ -59,7 +65,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Main Cell", forIndexPath: indexPath) as! MainCell
-        
         let request = requests![indexPath.row]
         cell.request = request
         
@@ -73,18 +78,21 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 ////            compose.composeView.backgroundColor = UIColor(red: 63, green: 81, blue: 181, alpha: 255)
 //        }
 //    }
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "composeSegue" {
+            print("modal segue activated")
+        }
     }
-    */
-
+    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        print("change authorization satuttas")
+        if status == CLAuthorizationStatus.AuthorizedWhenInUse {
+            print("change authorization satuttas")
+            manager.startUpdatingLocation()
+        }
+    }
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        var location = locations.first! as CLLocation
+        lastLocation = location.coordinate
+        print(lastLocation)
+    }
 }
