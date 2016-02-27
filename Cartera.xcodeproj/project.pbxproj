@@ -16,6 +16,7 @@
 		3A6850AA1C816B710015F10F /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6850A91C816B710015F10F /* MainCell.swift */; };
 		3A6850AC1C8174F20015F10F /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6850AB1C8174F20015F10F /* Request.swift */; };
 		3A6850AE1C8175470015F10F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6850AD1C8175470015F10F /* User.swift */; };
+		3A6850B01C8179AD0015F10F /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6850AF1C8179AD0015F10F /* DetailsViewController.swift */; };
 		69373CDE8786168F778530A1 /* Pods_Cartera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B40DE4652B9B118CBAD59D0 /* Pods_Cartera.framework */; };
 		BFA78A241C817B4900A2CF7E /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA78A231C817B4900A2CF7E /* Client.swift */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,7 @@
 		3A6850A91C816B710015F10F /* MainCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
 		3A6850AB1C8174F20015F10F /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		3A6850AD1C8175470015F10F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3A6850AF1C8179AD0015F10F /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		3B40DE4652B9B118CBAD59D0 /* Pods_Cartera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cartera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BCCFAB98952994CB70C3F7B /* Pods-Cartera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cartera.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cartera/Pods-Cartera.debug.xcconfig"; sourceTree = "<group>"; };
 		BFA78A231C817B4900A2CF7E /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				3A6850A91C816B710015F10F /* MainCell.swift */,
 				3A6850951C814C680015F10F /* LoginViewController.swift */,
 				3A6850A61C8169E90015F10F /* MainViewController.swift */,
+				3A6850AF1C8179AD0015F10F /* DetailsViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				3A6850961C814C680015F10F /* LoginViewController.swift in Sources */,
 				3A6850AE1C8175470015F10F /* User.swift in Sources */,
 				3A6850AC1C8174F20015F10F /* Request.swift in Sources */,
+				3A6850B01C8179AD0015F10F /* DetailsViewController.swift in Sources */,
 				3A6850AA1C816B710015F10F /* MainCell.swift in Sources */,
 				3A6850941C814C680015F10F /* AppDelegate.swift in Sources */,
 			);

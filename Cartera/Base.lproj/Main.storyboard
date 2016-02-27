@@ -147,6 +147,7 @@
                                             <outlet property="name" destination="w3p-bK-GAc" id="zYP-fT-q6g"/>
                                             <outlet property="requestStatusText" destination="vwe-ij-h0F" id="y4N-xY-vlv"/>
                                             <outlet property="timeStamp" destination="s8E-Al-PvL" id="nst-9R-4es"/>
+                                            <segue destination="gJ2-YJ-Pns" kind="modal" id="ZR8-AC-p7W"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -154,16 +155,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Aqs-fe-6W7"/>
+                    <navigationItem key="navigationItem" id="Aqs-fe-6W7">
+                        <barButtonItem key="rightBarButtonItem" title="Compose request" id="BFu-AV-HHT"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m1a-lf-85M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="956" y="298"/>
         </scene>
-        <!--View Controller-->
+        <!--Details View Controller-->
         <scene sceneID="N13-m5-Mm2">
             <objects>
-                <viewController id="gJ2-YJ-Pns" sceneMemberID="viewController">
+                <viewController id="gJ2-YJ-Pns" customClass="DetailsViewController" customModule="Cartera" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kke-Dr-uZ4"/>
                         <viewControllerLayoutGuide type="bottom" id="0Ue-9p-7Pm"/>
@@ -171,6 +174,20 @@
                     <view key="view" contentMode="scaleToFill" id="qAI-hS-iIc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WPX-CO-mCc">
+                                <rect key="frame" x="71" y="28" width="176" height="148"/>
+                            </imageView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="o9P-aq-mJe">
+                                <rect key="frame" x="0.0" y="303" width="320" height="230"/>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtL-Kf-Mpo">
+                                <rect key="frame" x="120" y="193" width="79" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
