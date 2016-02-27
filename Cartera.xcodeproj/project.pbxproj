@@ -17,6 +17,7 @@
 		3A6850AC1C8174F20015F10F /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6850AB1C8174F20015F10F /* Request.swift */; };
 		3A6850AE1C8175470015F10F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6850AD1C8175470015F10F /* User.swift */; };
 		69373CDE8786168F778530A1 /* Pods_Cartera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B40DE4652B9B118CBAD59D0 /* Pods_Cartera.framework */; };
+		BFA78A241C817B4900A2CF7E /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA78A231C817B4900A2CF7E /* Client.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		3A6850AD1C8175470015F10F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3B40DE4652B9B118CBAD59D0 /* Pods_Cartera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cartera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BCCFAB98952994CB70C3F7B /* Pods-Cartera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cartera.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cartera/Pods-Cartera.debug.xcconfig"; sourceTree = "<group>"; };
+		BFA78A231C817B4900A2CF7E /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		C0B0E4A443DB8168272131E2 /* Pods-Cartera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cartera.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cartera/Pods-Cartera.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,6 +71,7 @@
 		3A6850921C814C680015F10F /* Cartera */ = {
 			isa = PBXGroup;
 			children = (
+				BFA78A221C817B3E00A2CF7E /* API */,
 				3A6850A81C816B590015F10F /* Models */,
 				3A6850A51C81686D0015F10F /* Views */,
 				3A6850931C814C680015F10F /* AppDelegate.swift */,
@@ -114,6 +117,14 @@
 				C0B0E4A443DB8168272131E2 /* Pods-Cartera.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		BFA78A221C817B3E00A2CF7E /* API */ = {
+			isa = PBXGroup;
+			children = (
+				BFA78A231C817B4900A2CF7E /* Client.swift */,
+			);
+			name = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A6850A71C8169E90015F10F /* MainViewController.swift in Sources */,
+				BFA78A241C817B4900A2CF7E /* Client.swift in Sources */,
 				3A6850961C814C680015F10F /* LoginViewController.swift in Sources */,
 				3A6850AE1C8175470015F10F /* User.swift in Sources */,
 				3A6850AC1C8174F20015F10F /* Request.swift in Sources */,
