@@ -7,16 +7,23 @@
 //
 
 import UIKit
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        return true
+    func application(application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+            Parse.initializeWithConfiguration(
+                ParseClientConfiguration(block: { (configuration:ParseMutableClientConfiguration) -> Void in
+                    configuration.applicationId = "master"
+                    configuration.server = "http://cartera-server.herokuapp.com/parse"
+                    configuration.clientKey = "alsbfavjhfbdkjhbkjhnsd"
+                })
+            )
+            return true
     }
 
     func applicationWillResignActive(application: UIApplication) {
