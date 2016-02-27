@@ -7,16 +7,19 @@
 //
 
 import UIKit
+import MoneyFramework
 
 class ComposeRequestViewController: UIViewController {
 
     @IBOutlet weak var amountField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if amountField.editing {
-            amountField.text = nil
-            amountField.textColor = UIColor.whiteColor()
-        }
+//        if amountField.editing {
+//            amountField.text = nil
+//            amountField.textColor = UIColor.whiteColor()
+//            print("entered editing state")
+//        } *not running
 
         // Do any additional setup after loading the view.
     }
@@ -26,12 +29,17 @@ class ComposeRequestViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-//    @IBAction func onEditChanged(sender: AnyObject) {
-//        if amountField.textColor == UIColor.lightGrayColor() {
-//            amountField.text = nil
-//            amountField.textColor = UIColor.whiteColor()
-//        }
-//    }
+    
+    @IBAction func amountFieldValueBeginChange(sender: AnyObject) {
+        amountField.textColor = UIColor.whiteColor()
+        print("entered editing")
+    }
+    
+    @IBAction func amountFieldValueChanged(sender: AnyObject) {
+        amountField.textColor = UIColor.whiteColor()
+        print("entered editing")
+    }
+
 
     /*
     // MARK: - Navigation

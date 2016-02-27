@@ -17,12 +17,24 @@ class MainCell: UITableViewCell {
     @IBOutlet weak var timeStamp: UILabel!
     @IBOutlet weak var amount: UILabel!
     
+    var user: User!
+    
+    var request: Request! {
+        didSet {
+            name.text = "\(request.user.username!)"
+            print(name.text)
+//            avatarImage = UIImageView(frame: CGRectMake(0, 0, 100, 100))
+//            avatarImage.layer.cornerRadius = 8.0
+//            avatarImage.clipsToBounds = true
+            
+        }
+    }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        avatarImage = UIImageView(frame: CGRectMake(0, 0, 100, 100))
-        avatarImage.layer.cornerRadius = 8.0
-        avatarImage.clipsToBounds = true
+
         
     }
 

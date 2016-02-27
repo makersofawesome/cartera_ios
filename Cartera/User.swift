@@ -18,12 +18,12 @@ class User: NSObject {
         username = object["username"] as? String
         id = object["_id"] as? String
     }
-    class func usersWithArray(array: [PFObject]) -> [User] {
-        var users = [User]()
+    class func usersWithArray(users: [PFObject]) -> [User] { // calls function, gets info, without making actual user objects
+        var usersList = [User]()
         
-        for obj in array {
-            users.append(User(object: obj))
+        for user in users {
+            usersList.append(User(object: user))
         }
-        return users
+        return usersList
     }
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="FEo-Kg-5aN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="FEo-Kg-5aN">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--Cartera-->
@@ -83,7 +83,7 @@
                                         <rect key="frame" x="0.0" y="92" width="320" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eX5-Nr-HUc" id="bpW-0F-NmL">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="73"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="73.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kCU-5l-ZQg">
@@ -171,6 +171,9 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="7dS-iO-Jsh" id="d33-4v-ElX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m1a-lf-85M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -233,6 +236,10 @@
                                 <rect key="frame" x="20" y="153" width="280" height="75"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                <connections>
+                                    <action selector="amountFieldValueBeginChange:" destination="Inf-t4-eTK" eventType="editingDidBegin" id="wGd-ih-pv2"/>
+                                    <action selector="amountFieldValueChanged:" destination="Inf-t4-eTK" eventType="editingChanged" id="mjD-2B-UIo"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.48833616670000002" green="1" blue="0.457265054" alpha="1" colorSpace="calibratedRGB"/>

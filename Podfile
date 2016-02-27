@@ -7,5 +7,6 @@ target 'Cartera' do
   pod 'SwiftHTTP'
   pod 'SwiftyJSON'
   pod 'Parse'
+  pod 'MoneyFramework', '1.0.3'
 end
 

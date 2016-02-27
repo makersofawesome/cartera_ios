@@ -4,12 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>AFNetworking.xcscheme</key>
+		<key>Bolts.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Bolts.xcscheme</key>
+		<key>MoneyFramework.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -24,15 +24,30 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SwiftHTTP.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SwiftyJSON.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>02BD0C4105DFD00AE05C2312207A827D</key>
+		<key>037B08502C8180BBD55096C4ACC05239</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1C3436CEA5C3D39764C5F54374794ECB</key>
+		<key>4F81A9D0BDF2CF95F56376F13345D60D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5C49944D39509976A2C58FF48C7EAC09</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -43,6 +58,11 @@
 			<true/>
 		</dict>
 		<key>BCA053B6430690326435042FEB61B458</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E52E50CA9D2B98525F88A0CD7F153BD6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

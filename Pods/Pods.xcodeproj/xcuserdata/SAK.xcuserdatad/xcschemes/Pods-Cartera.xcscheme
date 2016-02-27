@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '0EEADBC0694F83C6849B0E1C'
+               BlueprintIdentifier = 'B13B2FF9F98184D235C6CBFE'
                BlueprintName = 'Pods-Cartera'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods_Cartera.framework'>
