@@ -9,7 +9,6 @@
 import UIKit
 import SwiftHTTP
 import SwiftyJSON
-import Alamofire
 //import nessie-ios-sdk-swift2
 
 class Client: NSObject {//NSEClient {
