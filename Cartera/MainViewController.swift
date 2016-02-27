@@ -18,6 +18,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
 
         // Do any additional setup after loading the view.
+        self.navigationItem.setHidesBackButton(true, animated:false)
     }
 
     override func didReceiveMemoryWarning() {
