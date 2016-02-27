@@ -12,6 +12,7 @@ import MoneyFramework
 class ComposeRequestViewController: UIViewController {
 
     @IBOutlet weak var amountField: UITextField!
+    @IBOutlet var composeView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,8 @@ class ComposeRequestViewController: UIViewController {
 //            amountField.textColor = UIColor.whiteColor()
 //            print("entered editing state")
 //        } *not running
-
+        
+        
         // Do any additional setup after loading the view.
     }
 
@@ -39,6 +41,26 @@ class ComposeRequestViewController: UIViewController {
         amountField.textColor = UIColor.whiteColor()
         print("entered editing")
     }
+    
+    func formatCurrency(string: String) {
+        print("format \(string)")
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        formatter.locale = NSLocale(localeIdentifier: "en_US")
+        var numberFromField = (NSString(string: string).doubleValue)/100
+        amountField.text = formatter.stringFromNumber(numberFromField)
+        print(amountField.text)
+    }
+    
+//    func returnToMainVC(){
+//        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+//        self.navigationController!.popToViewController(viewControllers[viewControllers.count - 1], animated: true)
+//    }
+    
+    @IBAction func toMainVC(sender: UIButton) {
+//        returnToMainVC()
+    }
+    
 
 
     /*
