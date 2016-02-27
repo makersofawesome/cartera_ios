@@ -17,6 +17,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = true
         // Do any additional setup after loading the view, typically from a nib.
+        print("loaded")
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)

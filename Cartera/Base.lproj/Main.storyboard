@@ -17,48 +17,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0zM-CQ-cGL">
-                                <rect key="frame" x="198" y="269" width="97" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0zM-CQ-cGL">
+                                <rect key="frame" x="39" y="265" width="241" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETa-9l-2W1">
-                                <rect key="frame" x="30" y="171" width="41" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exi-bt-15Z">
-                                <rect key="frame" x="30" y="273" width="74" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e-mail" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kbj-c9-nmB">
+                                <rect key="frame" x="39" y="167" width="241" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RW5-oT-OBL">
-                                <rect key="frame" x="0.0" y="491" width="320" height="77"/>
-                                <color key="backgroundColor" red="1" green="0.34467805384428096" blue="0.20710020281488861" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="94" y="347" width="132" height="32"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <state key="normal" title="Sign in to Cartera">
-                                    <color key="titleColor" red="0.5104135408383963" green="0.29275520908755515" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.51041354080000001" green="0.29275520910000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="onSignin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MDr-7y-D1o"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kbj-c9-nmB">
-                                <rect key="frame" x="198" y="167" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uee-Zg-OpN">
-                                <rect key="frame" x="83" y="393" width="52" height="30"/>
-                                <state key="normal" title="Sign up"/>
+                                <rect key="frame" x="131" y="395" width="57" height="32"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <state key="normal" title="Sign up">
+                                    <color key="titleColor" red="1" green="0.34467805379999999" blue="0.20710020279999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="onSignup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ME0-Wh-cSM"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Cartera" id="5DC-lU-UGs"/>
                     <connections>
@@ -159,7 +151,7 @@
                                             <outlet property="name" destination="w3p-bK-GAc" id="zYP-fT-q6g"/>
                                             <outlet property="requestStatusText" destination="vwe-ij-h0F" id="y4N-xY-vlv"/>
                                             <outlet property="timeStamp" destination="s8E-Al-PvL" id="nst-9R-4es"/>
-                                            <segue destination="gJ2-YJ-Pns" kind="modal" id="ZR8-AC-p7W"/>
+                                            <segue destination="gJ2-YJ-Pns" kind="push" identifier="detailSegue" id="ZR8-AC-p7W"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -168,18 +160,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Aqs-fe-6W7">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="fha-gs-dHz">
+                        <barButtonItem key="rightBarButtonItem" image="composeButton" style="plain" id="fha-gs-dHz">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="guO-KH-W9A">
                                 <rect key="frame" x="272" y="6" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="composeButton"/>
+                                <connections>
+                                    <segue destination="Inf-t4-eTK" kind="modal" identifier="composeSegue" modalTransitionStyle="coverVertical" id="sS2-8y-6u0"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m1a-lf-85M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="956" y="298"/>
+            <point key="canvasLocation" x="950" y="292"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="N13-m5-Mm2">
@@ -194,13 +189,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WPX-CO-mCc">
-                                <rect key="frame" x="71" y="28" width="176" height="148"/>
+                                <rect key="frame" x="72" y="72" width="176" height="148"/>
                             </imageView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="o9P-aq-mJe">
                                 <rect key="frame" x="0.0" y="303" width="320" height="230"/>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtL-Kf-Mpo">
-                                <rect key="frame" x="120" y="193" width="79" height="21"/>
+                                <rect key="frame" x="121" y="228" width="79" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -208,15 +203,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="XZQ-lI-GuO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YFc-ud-qFv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1329" y="298"/>
+            <point key="canvasLocation" x="1531" y="720"/>
         </scene>
-        <!--View Controller-->
+        <!--Compose Request View Controller-->
         <scene sceneID="vmc-Ap-sBx">
             <objects>
-                <viewController id="Inf-t4-eTK" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="partialCurl" id="Inf-t4-eTK" customClass="ComposeRequestViewController" customModule="Cartera" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wB1-NK-Ptw"/>
                         <viewControllerLayoutGuide type="bottom" id="WzE-He-tjp"/>
@@ -224,12 +220,35 @@
                     <view key="view" contentMode="scaleToFill" id="FTx-to-mBD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zxA-GG-Xve">
+                                <rect key="frame" x="20" y="20" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="J1G-It-Yvj"/>
+                                    <constraint firstAttribute="width" constant="32" id="hU8-pM-qhD"/>
+                                </constraints>
+                                <state key="normal" image="cancelButton"/>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="$0.00" textAlignment="center" minimumFontSize="40" translatesAutoresizingMaskIntoConstraints="NO" id="lu0-gG-2HK">
+                                <rect key="frame" x="20" y="153" width="280" height="75"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.48833616670000002" green="1" blue="0.457265054" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="zxA-GG-Xve" firstAttribute="leading" secondItem="FTx-to-mBD" secondAttribute="leading" constant="20" id="4ez-J3-Qol"/>
+                            <constraint firstItem="zxA-GG-Xve" firstAttribute="top" secondItem="wB1-NK-Ptw" secondAttribute="bottom" id="lfK-CU-GBK"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="F5b-uw-2dY"/>
+                    <connections>
+                        <outlet property="amountField" destination="lu0-gG-2HK" id="Ksr-wb-Jy4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bDX-2g-mix" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1717" y="298"/>
+            <point key="canvasLocation" x="1554" y="-28"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lwl-JV-fjw">
@@ -251,6 +270,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cancelButton" width="700" height="700"/>
         <image name="composeButton" width="700" height="700"/>
     </resources>
 </document>
