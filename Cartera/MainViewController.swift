@@ -7,27 +7,44 @@
 //
 
 import UIKit
+import Parse
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var tableView: UITableView!
+    var users: [User]?
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        var image = UIImage(named: "composeButton")
-//        image = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
-
-        // Do any additional setup after loading the view.
         self.navigationItem.setHidesBackButton(true, animated:false)
+        tableView.delegate = self
+        tableView.dataSource = self
+        //loadUsers()
     }
-
+    func loadUsers() {
+        var query = PFQuery(className: "_User")
+        query.findObjectsInBackgroundWithBlock { (media: [PFObject]?, error: NSError?) -> Void in
+            if let media = media {
+                self.users = User.usersWithArray(media)
+                self.tableView.reloadData()
+            } else {
+                // handle error
+            }
+        }
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        if let data = users {
+            return data.count
+        }
+        else {
+            return 0
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -53,6 +70,5 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
 
 }
