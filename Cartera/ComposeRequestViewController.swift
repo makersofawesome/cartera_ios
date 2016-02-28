@@ -10,86 +10,92 @@ import UIKit
 import MoneyFramework
 import Parse
 
-class ComposeRequestViewController: UIViewController {
+class ComposeRequestViewController: UIViewController, UITextFieldDelegate {
 
- 
     @IBOutlet weak var amountField: UITextField!
     @IBOutlet var composeView: UIView!
-    @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var dollarSign: UILabel!
-    
+    var currentString = ""
     let backButton = UIImage(named: "cancelButton")
     var location: CLLocationCoordinate2D?
     var currentRequest: Request?
     override func viewDidLoad() {
         super.viewDidLoad()
-//        if amountField.editing {
-//            amountField.text = nil
-//            amountField.textColor = UIColor.whiteColor()
-//            print("entered editing state")
-//        } *not running
         self.navigationController?.navigationBarHidden = false
         self.navigationController?.navigationBar.backgroundColor = UIColor(red: 63, green: 81, blue: 181, alpha: 255)
-        self.navigationItem.backBarButtonItem?.image = UIImage(named: "cancelButton")
-//        self.navigationItem.backBarButtonItem = UIBarButtonItem(image: backButton, style: .Plain, target: self, action: nil)
-//        self.navigationItem.leftBarButtonItem =
-//            UIBarButtonItem(image:backButton, style:.Plain, target:self, action:"backButtonPressed:")
-
-        print("button should be changed")
-        
-        
-        // Do any additional setup after loading the view.
+        //self.navigationItem.backBarButtonItem?.image = UIImage(named: "cancelButton")
+        self.navigationItem.rightBarButtonItem?.image = UIImage(named: "submitRequest")
+        amountField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    @IBAction func onCancel(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool { // return NO to not change text
+        
+        switch string {
+        case "0","1","2","3","4","5","6","7","8","9":
+            currentString += string
+            print(currentString)
+            formatCurrency(currentString)
+        default:
+            var array = Array(arrayLiteral: string)
+            var currentStringArray = Array(arrayLiteral: currentString)
+            if array.count == 0 && currentStringArray.count != 0 {
+                currentStringArray.removeLast()
+                currentString = ""
+                for character in currentStringArray {
+                    currentString += String(character)
+                }
+                formatCurrency(currentString)
+            }
+        }
+        return false
     }
     
     
     @IBAction func amountFieldValueBeginChange(sender: AnyObject) {
         amountField.textColor = UIColor.whiteColor()
-        //amountField.text! += "$"
-
+        amountField.placeholder = "0.00"
+        amountField.text! += "$"
         print("entered editing")
     }
     
     @IBAction func amountFieldValueChanged(sender: AnyObject) {
         amountField.textColor = UIColor.whiteColor()
         amountField.placeholder = nil
-        print("entered editing")
+        print("value changed")
         formatCurrency(amountField.text!)
     }
-    
     func formatCurrency(string: String) {
         print("format \(string)")
         
         let formatter = NSNumberFormatter()
         formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
         formatter.locale = NSLocale(localeIdentifier: "en_US")
-//        var numberFromField = (NSString(string: string).doubleValue)/100
-//        print(numberFromField)
-//        amountField.text = formatter.stringFromNumber(numberFromField)
+        var numberFromField = (NSString(string: currentString).doubleValue)/100
+        amountField.text = formatter.stringFromNumber(numberFromField)
+        print(amountField.text )
+    }
+    /*func formatCurrency(string: String) {
+        print("format \(string)")
+        
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        formatter.locale = NSLocale(localeIdentifier: "en_US")
         print(amountField.text)
-    }
-    
-//    func returnToMainVC(){
-//        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
-//        self.navigationController!.popToViewController(viewControllers[viewControllers.count - 1], animated: true)
-//    }
-    
+    }*/
+  
     func backButtonPressed(sender:UIButton) {
-        navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
-//    @IBAction func toMainVC(sender: UIButton) {
-//        backButtonPressed(cancelButton)
-//    }
-    
-
 
     @IBAction func onCompose(sender: AnyObject) {
-        //need user and amount
         currentRequest = Request(
             amount:Int(amountField.text!)!,
             lat: Float((location?.latitude)!),
@@ -103,23 +109,5 @@ class ComposeRequestViewController: UIViewController {
                 print(error!.localizedDescription)
             }
         })
-    }
-    func composeParams() -> NSDictionary {
-        return [
-            "user": _currentUser!,
-            "amount": Int(amountField.text!)!,
-            "latitude": (location?.latitude)!,
-            "longitude": (location?.longitude)!
-        ]
-    }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    }    
 }

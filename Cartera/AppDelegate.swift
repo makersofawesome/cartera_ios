@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 configuration.clientKey = "alsbfavjhfbdkjhbkjhnsd"
             })
         )
+        
         if PFUser.currentUser() != nil {
             let vc = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as! MainViewController
             let nvc = storyboard.instantiateViewControllerWithIdentifier("NavigationController") as! UINavigationController

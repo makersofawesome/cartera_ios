@@ -17,7 +17,6 @@ class MainCell: UITableViewCell {
     @IBOutlet weak var timeStamp: UILabel!
     @IBOutlet weak var amount: UILabel!
     
-    var user: User!
     var request: Request! {
         didSet {
             name.text = "\(request.requester.username!)"

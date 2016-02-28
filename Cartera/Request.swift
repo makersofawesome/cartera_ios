@@ -45,43 +45,27 @@ class Request: NSObject {
     
     class func requestsWithArray(object: [PFObject]) -> [Request] {
         var requestList = [Request]()
-        var requester: User?
-        var length = object.count, count = 0;
-        print("length = \(length)")
         for x in object {
-            var query = PFQuery(className:"_User")
-            do {
-            let user = try query.getObjectWithId(x["requesterId"] as! String)
-            requester = User(object: user)
-            requestList.append(Request(
-                amount: x["amount"] as! Int,
-                lat: x["latitude"] as! Float,
-                long: x["longitude"] as! Float,
-                user: requester as! User!))
-            } catch let error as NSError {
-                print("error populating data \(error)")
-            }            /* query.getObjectInBackgroundWithId(x["requesterId"] as! String) {
-            (user: PFObject?, error: NSError?) -> Void in
-            if error == nil && user != nil {
-            requester = User(object: user!)
-            requestList.append(Request(
-            amount: x["amount"] as! Int,
-            lat: lat,
-            long: long,
-            user: requester as! User!))
-            print("count = \(count)")
-            
-            NSNotificationCenter.defaultCenter().postNotificationName(reloadNotification, object: nil)
-            
-            } else {
-            print("\(error)")
+            let query = PFQuery(className:"_User")
+            query.whereKey("_id", equalTo: x["requesterId"])
+            query.getObjectInBackgroundWithId(x["requesterId"] as! String) { (user: PFObject?, error: NSError?) -> Void in
+                if user != nil {
+                    requestList.append(Request(
+                        amount: x["amount"] as! Int,
+                        lat: x["latitude"] as! Float,
+                        long: x["longitude"] as! Float,
+                        user: User(username: user!["username"] as! String,
+                            id: (user?.objectId)!)))
+                }
+                else {
+                    print(error?.localizedDescription)
+                }
             }
-            }
-            count++
-            */
         }
-        return requestList
+         return requestList
     }
-    
-    
+   
 }
+
+
+

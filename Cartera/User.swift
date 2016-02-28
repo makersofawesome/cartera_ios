@@ -18,9 +18,13 @@ class User: NSObject {
     var lastName: String?
     var accountId: String?
     
-    init(object: PFObject){
+    init(object: PFObject) {
         username = object["username"] as? String
         id = object.objectId
+    }
+    init (username: String, id: String) {
+        self.username = username
+        self.id = id
     }
     class func usersWithArray(users: [PFObject]) -> [User] { // calls function, gets info, without making actual user objects
         var usersList = [User]()

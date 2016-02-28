@@ -10,44 +10,56 @@ import UIKit
 import Parse
 import CoreLocation
 
-var locationManager: CLLocationManager!
-let reloadNotification = "reloadNotification"
 
+var lastLocation : CLLocationCoordinate2D!
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     var locationManager: CLLocationManager!
-    var lastLocation : CLLocationCoordinate2D!
     var users: [User]?
     var requests: [Request]?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBarHidden = false
         locationManager = CLLocationManager()
         locationManager.requestWhenInUseAuthorization()
-        self.navigationItem.setHidesBackButton(true, animated:false)
+        //self.navigationItem.setHidesBackButton(true, animated:false)
+        //self.navigationItem.backBarButtonItem?.image = UIImage(named: "log out temp")
         tableView.delegate = self
         tableView.dataSource = self
-        locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.distanceFilter = 200
         locationManager.requestWhenInUseAuthorization()
         loadData()
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadTableView", name: reloadNotification, object: nil)
+    }
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        loadData()
     }
     func loadData() {
-        var query = PFQuery(className: "Request")
-        query.findObjectsInBackgroundWithBlock { (media: [PFObject]?, error: NSError?) -> Void in
-            if let media = media {
-                self.requests = Request.requestsWithArray(media)
-                self.tableView.reloadData()
-            } else {
-                // handle error
+        if (lastLocation != nil){
+            let currentLat = lastLocation.latitude
+            let currentLong = lastLocation.longitude
+            let maxLat = currentLat + 0.7//(360*5)/(24901*cos(currentLat))
+            let minLat = currentLat - 0.7//(360*5)/(24901*cos(currentLat))
+            let maxLong = currentLong + 0.7//(360*5)/(24901*sin(currentLong))
+            let minLong = currentLong - 0.7//(360*5)/(24901*sin(currentLong))
+            let query = PFQuery(className: "Request")
+            query.whereKey("latitude", greaterThanOrEqualTo: maxLat)
+            query.whereKey("latitude", lessThanOrEqualTo: minLat)
+            query.whereKey("longitude", greaterThanOrEqualTo: maxLong)
+            query.whereKey("longitude", lessThanOrEqualTo: minLong)
+            query.findObjectsInBackgroundWithBlock { (media: [PFObject]?, error: NSError?) -> Void in
+                if let media = media {
+                    print(media)
+                    self.requests = Request.requestsWithArray(media)
+                    self.tableView.reloadData()
+                } else {
+                    print(error)
+                }
             }
         }
-        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -83,20 +95,20 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
         }
     }
-    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == CLAuthorizationStatus.AuthorizedWhenInUse {
             manager.startUpdatingLocation()
         }
     }
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        var location = locations.first! as CLLocation
+        let location = locations.first! as CLLocation
         lastLocation = location.coordinate
+        print(lastLocation)
+        loadData()
     }
-    
     
     @IBAction func logOutButton(sender: AnyObject) {
         PFUser.logOut()
-        var currentUser = PFUser.currentUser()
     }
     
     
