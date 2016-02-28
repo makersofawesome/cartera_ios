@@ -10,10 +10,15 @@ import UIKit
 
 class SignUpViewController: UIViewController {
     
+    @IBOutlet weak var accountIDField: UITextField!
     
+    @IBOutlet weak var firstName: UITextField!
 
+    @IBOutlet weak var lastName: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Do any additional setup after loading the view.
     }

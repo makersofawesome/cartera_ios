@@ -91,19 +91,17 @@ class Client: NSObject {//NSEClient {
         }
         return JSON(data: data)
     }
-    func createTransferWithParams(id: String) {
+    func createTransferWithParams(requester: String, teller: String, amount: Int) {
         
         let requestDictionary = [
             "medium": "balance",
-            "payee_id": "56c66be6a73e492741507e0c",
-            "amount": 1,
-            "transaction_date": "2016-02-27",
-            "status": "pending",
-            "description": "string"
+            "payee_id": requester,
+            "amount": amount,
+            "transaction_date": "\(NSDate())",
         ]
         
         
-        let url: NSURL = NSURL(string: createRequestUrl("accounts/\(id)/transfers"))!
+        let url: NSURL = NSURL(string: createRequestUrl("accounts/\(teller)/transfers"))!
         let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")

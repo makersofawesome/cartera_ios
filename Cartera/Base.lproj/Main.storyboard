@@ -123,6 +123,11 @@
                         <color key="backgroundColor" red="0.24705882352941178" green="0.31764705882352939" blue="0.70980392156862748" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Register for Cartera" id="Fh8-1p-iqu"/>
+                    <connections>
+                        <outlet property="accountIDField" destination="BtS-F1-8JO" id="SUI-I6-5qc"/>
+                        <outlet property="firstName" destination="Jbt-2c-FMI" id="Gw7-hV-sB6"/>
+                        <outlet property="lastName" destination="xfx-X9-w4k" id="a1l-mq-b4m"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZJ6-H2-DtS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

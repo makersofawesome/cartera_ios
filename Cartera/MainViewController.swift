@@ -97,7 +97,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func logOutButton(sender: AnyObject) {
         PFUser.logOut()
         var currentUser = PFUser.currentUser()
-        
     }
     
     
