@@ -9,7 +9,8 @@
 import UIKit
 import Parse
 import CoreLocation
-
+import MGSwipeTableCell
+import ChameleonFramework
 
 var lastLocation : CLLocationCoordinate2D!
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
@@ -20,7 +21,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var requests: [Request]?
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
         self.navigationController?.navigationBarHidden = false
+        self.navigationController?.navigationBar.barTintColor = FlatPurpleDark()
         locationManager = CLLocationManager()
         locationManager.requestWhenInUseAuthorization()
         //self.navigationItem.setHidesBackButton(true, animated:false)
@@ -46,13 +49,13 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let maxLong = currentLong + 0.7//(360*5)/(24901*sin(currentLong))
             let minLong = currentLong - 0.7//(360*5)/(24901*sin(currentLong))
             let query = PFQuery(className: "Request")
-            query.whereKey("latitude", greaterThanOrEqualTo: maxLat)
-            query.whereKey("latitude", lessThanOrEqualTo: minLat)
-            query.whereKey("longitude", greaterThanOrEqualTo: maxLong)
-            query.whereKey("longitude", lessThanOrEqualTo: minLong)
-            query.findObjectsInBackgroundWithBlock { (media: [PFObject]?, error: NSError?) -> Void in
+            query.whereKey("latitude", lessThanOrEqualTo: maxLat)
+            query.whereKey("latitude", greaterThanOrEqualTo: minLat)
+            query.whereKey("longitude", lessThanOrEqualTo: maxLong)
+            query.whereKey("longitude", greaterThanOrEqualTo: minLong)
+
+            query.findObjectsInBackgroundWithBlock{ (media: [PFObject]?, error: NSError?) -> Void in
                 if let media = media {
-                    print(media)
                     self.requests = Request.requestsWithArray(media)
                     self.tableView.reloadData()
                 } else {
@@ -72,7 +75,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let data = requests {
-            print(data.count)
+            //print(data.count)
             return data.count
         }
         else {
@@ -83,8 +86,18 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Main Cell", forIndexPath: indexPath) as! MainCell
         let request = requests![indexPath.row]
+        let user = User(id: request.requesterId!)
         cell.request = request
+        cell.user = user
         
+    //
+      //  let deleteButton = MGSwipeButton(title: "Delete", backgroundColor: purple, callback: {
+       //     (sender: MGSwipeTableCell!) -> Bool in
+            // do Stuff
+       //     return true
+      //  })
+        
+        //cell.leftButtons = [deleteButton]
         return cell
     }
 
@@ -103,7 +116,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.first! as CLLocation
         lastLocation = location.coordinate
-        print(lastLocation)
         loadData()
     }
     

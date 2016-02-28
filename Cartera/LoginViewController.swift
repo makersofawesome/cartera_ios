@@ -33,15 +33,22 @@ class LoginViewController: UIViewController {
         PFUser.logInWithUsernameInBackground(userField.text!, password: passwordField.text!) { (user: PFUser?, error: NSError?) -> Void in
             if user != nil {
                 print("signing in ")
+                _currentUser = User(object: PFUser.currentUser()!)
                 self.performSegueWithIdentifier("loginToMain", sender: nil)
             }
             else {
                 print(error?.localizedDescription)
+                self.displayAlert("Wrong username or password")
             }
         }
     }
 
-
+    func displayAlert(text: String) {
+        let alertController = UIAlertController(title: "Cortera", message:
+            text, preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
         view.endEditing(true)

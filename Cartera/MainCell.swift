@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import MGSwipeTableCell
 
-class MainCell: UITableViewCell {
+class MainCell: UITableViewCell//MGSwipeTableCell 
+{
     
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var name: UILabel!
@@ -19,12 +21,18 @@ class MainCell: UITableViewCell {
     
     var request: Request! {
         didSet {
-            name.text = "\(request.requester.username!)"
-            amount.text = "$\(request.amount!)"
+            let amt = String(format: "%\(0.2)f", request.amount!)
+            amount.text = "$\(amt)"
             //            avatarImage = UIImageView(frame: CGRectMake(0, 0, 100, 100))
 //            avatarImage.layer.cornerRadius = 8.0
 //            avatarImage.clipsToBounds = true
             
+        }
+    }
+    var user: User! {
+        didSet {
+            print(user.username)
+            self.name.text = "\(user.username!)"
         }
     }
     

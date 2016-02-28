@@ -9,6 +9,7 @@
 import UIKit
 import MoneyFramework
 import Parse
+import SwiftyJSON
 
 class ComposeRequestViewController: UIViewController, UITextFieldDelegate {
 
@@ -20,9 +21,10 @@ class ComposeRequestViewController: UIViewController, UITextFieldDelegate {
     var currentRequest: Request?
     override func viewDidLoad() {
         super.viewDidLoad()
+        amountField.textColor = UIColor.whiteColor()
+        
         self.navigationController?.navigationBarHidden = false
         self.navigationController?.navigationBar.backgroundColor = UIColor(red: 63, green: 81, blue: 181, alpha: 255)
-        //self.navigationItem.backBarButtonItem?.image = UIImage(named: "cancelButton")
         self.navigationItem.rightBarButtonItem?.image = UIImage(named: "submitRequest")
         amountField.delegate = self
     }
@@ -35,29 +37,6 @@ class ComposeRequestViewController: UIViewController, UITextFieldDelegate {
     @IBAction func onCancel(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool { // return NO to not change text
-        
-        switch string {
-        case "0","1","2","3","4","5","6","7","8","9":
-            currentString += string
-            print(currentString)
-            formatCurrency(currentString)
-        default:
-            var array = Array(arrayLiteral: string)
-            var currentStringArray = Array(arrayLiteral: currentString)
-            if array.count == 0 && currentStringArray.count != 0 {
-                currentStringArray.removeLast()
-                currentString = ""
-                for character in currentStringArray {
-                    currentString += String(character)
-                }
-                formatCurrency(currentString)
-            }
-        }
-        return false
-    }
-    
-    
     @IBAction func amountFieldValueBeginChange(sender: AnyObject) {
         amountField.textColor = UIColor.whiteColor()
         amountField.placeholder = "0.00"
@@ -66,48 +45,43 @@ class ComposeRequestViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func amountFieldValueChanged(sender: AnyObject) {
-        amountField.textColor = UIColor.whiteColor()
         amountField.placeholder = nil
-        print("value changed")
-        formatCurrency(amountField.text!)
     }
-    func formatCurrency(string: String) {
-        print("format \(string)")
-        
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-        formatter.locale = NSLocale(localeIdentifier: "en_US")
-        var numberFromField = (NSString(string: currentString).doubleValue)/100
-        amountField.text = formatter.stringFromNumber(numberFromField)
-        print(amountField.text )
-    }
-    /*func formatCurrency(string: String) {
-        print("format \(string)")
-        
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-        formatter.locale = NSLocale(localeIdentifier: "en_US")
-        print(amountField.text)
-    }*/
-  
-    func backButtonPressed(sender:UIButton) {
+     func backButtonPressed(sender:UIButton) {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
-
+    func displayAlert(text: String) {
+        let alertController = UIAlertController(title: "Cortera", message:
+            text, preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    func getBalance(){
+        let json = Client.sharedClient.getAccountById(_currentUser!.accountId!)
+    }
     @IBAction func onCompose(sender: AnyObject) {
-        currentRequest = Request(
-            amount:Int(amountField.text!)!,
-            lat: Float((location?.latitude)!),
-            long: Float((location?.longitude)!),
-            user:  _currentUser!)
-        currentRequest!.postOpenRequest( withCompletion: {
-            (success: Bool, error: NSError?) -> Void in
-            if success {
-                print("success requesting for \(self.currentRequest?.amount)")
-            } else {
-                print(error!.localizedDescription)
-            }
-        })
-    }    
+
+        let amount = (String(amountField.text!.characters.dropFirst()))
+        if amount.characters.count > 0 //&& Int(amount) <= getBalance() 
+        {
+            currentRequest = Request(
+                amount:Float(amount)!,
+                lat: Float((location?.latitude)!),
+                long: Float((location?.longitude)!),
+                requesterId:  _currentUser!.id!)
+            currentRequest!.postOpenRequest( withCompletion: {
+                (success: Bool, error: NSError?) -> Void in
+                if success {
+                    print("success requesting for \(self.currentRequest?.amount)")
+                    self.navigationController?.popViewControllerAnimated(true)
+                } else {
+                    print(error!.localizedDescription)
+                }
+            })
+        }
+       else {
+            displayAlert("Error posting Cartera request")
+        }
+    }
 }

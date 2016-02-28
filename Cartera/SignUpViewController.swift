@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import Parse
 
 class SignUpViewController: UIViewController {
+    @IBOutlet weak var passwordField: UITextField!
     
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var accountIDField: UITextField!
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
@@ -26,16 +30,24 @@ class SignUpViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func onSignup(sender: AnyObject) {
+        let user = PFUser()
+        
+        user.username = usernameField.text
+        user.password = passwordField.text
+        user.signUpInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if success {
+                print("created user")
+                self.performSegueWithIdentifier("registerToMain", sender: nil)
+            } else {
+                print("failed creating user \(error?.localizedDescription)")
+            }
+        }
+        
     }
-    */
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
 
 }

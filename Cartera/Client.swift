@@ -21,10 +21,11 @@ class Client: NSObject {//NSEClient {
     }
     class var sharedClient: Client {
         struct Static {
-            static let client = Client(apiKey: "8d09ae83b61d21f830102c97e91d751b", url: "http://api.reimaginebanking.com/")
+            static let client = Client(apiKey: "5948b3880cdae0efb761d44b9be7d96f", url: "http://api.reimaginebanking.com/")
         }
         return Static.client
     }
+
     func getAccounts() -> JSON{
         var data = NSData()
         do {
@@ -41,21 +42,32 @@ class Client: NSObject {//NSEClient {
         }
         return JSON(data: data)
     }
-    func getAccountById(id: String) -> JSON{
-        var data = NSData()
-        do {
-            let opt = try HTTP.GET(createRequestUrl("accounts/\(id)"))
-            opt.start { response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
-                    return
+    func getAccountById(id: String ) {
+        
+        let url: NSURL = NSURL(string: createRequestUrl("accounts/\(id)"))!
+        let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.HTTPMethod = "GET"
+        
+        print(NSString(data: request.HTTPBody!, encoding:NSUTF8StringEncoding)!)
+        
+        let queue:NSOperationQueue = NSOperationQueue()
+        NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler:{ (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+            if response != nil{
+                do {
+                    let parsed = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
+                    print(parsed)
                 }
-                data = response.data
+                catch let error as NSError {
+                    print("A JSON parsing error occurred, here are the details:\n \(error)")
+                }
             }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-        return JSON(data: data)
+            else{
+                print("response null from metrics");
+            }
+        })
+
     }
     func getTransfersFromAccountId(id: String) -> JSON{
         var data = NSData()

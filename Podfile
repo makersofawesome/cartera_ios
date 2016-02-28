@@ -8,5 +8,7 @@ target 'Cartera' do
   pod 'SwiftyJSON'
   pod 'Parse'
   pod 'MoneyFramework', '1.0.3'
+  pod 'MGSwipeTableCell'
+  pod 'ChameleonFramework/Swift'
 end
 

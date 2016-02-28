@@ -12,60 +12,64 @@ import CoreLocation
 
 class Request: NSObject {
     
-    var requester: User!
-    var amount: Int?
+    var requesterId: String?
+    var amount: Float?
     var latitude: Float?
     var longitude: Float?
-    var id: Int?
-    
     /*
      * Pass in params to initialize
      * needs user, amount, and geocode
      */
-    init(amount: Int, lat: Float, long: Float, user: User){
+    init(amount: Float, lat: Float, long: Float, requesterId: String){
         
         self.amount = amount
         self.latitude = lat
         self.longitude = long
-        self.requester = user
+        self.requesterId = requesterId
         
     }
     
+    
     func postOpenRequest(withCompletion completion: PFBooleanResultBlock?) {
         let post = PFObject(className: "Request")
-        if requester != nil {
-            print("requester id \(requester.id)")
-            post.setObject(requester.id!, forKey: "requesterId")
+        if requesterId != nil {
+            //print("requester id \(requesterId)")
+            post.setObject(requesterId!, forKey: "requesterId")
             post.setObject(amount!, forKey: "amount")
             post.setObject(latitude!, forKey: "latitude")
             post.setObject(longitude!, forKey: "longitude")
             post.saveInBackgroundWithBlock(completion)
         }
     }
-    
-    class func requestsWithArray(object: [PFObject]) -> [Request] {
-        var requestList = [Request]()
-        for x in object {
-            let query = PFQuery(className:"_User")
-            query.whereKey("_id", equalTo: x["requesterId"])
-            query.getObjectInBackgroundWithId(x["requesterId"] as! String) { (user: PFObject?, error: NSError?) -> Void in
-                if user != nil {
-                    requestList.append(Request(
-                        amount: x["amount"] as! Int,
-                        lat: x["latitude"] as! Float,
-                        long: x["longitude"] as! Float,
-                        user: User(username: user!["username"] as! String,
-                            id: (user?.objectId)!)))
-                }
-                else {
-                    print(error?.localizedDescription)
-                }
+    func requesterObject(completion: (PFObject) -> ()) {
+        let query = PFQuery(className: "_User")
+        query.getObjectInBackgroundWithId(requesterId!) { (object, error) -> Void in
+            if error != nil && object != nil{
+                completion(object!)
+            } else {
+                print(error)
             }
         }
-         return requestList
+    
     }
-   
+    func requester(completion: (User) -> ()){
+        var userObject: PFObject?
+         requesterObject{(object) -> () in
+            completion(User(object: object))
+        }
+        
+    }
+    class func requestsWithArray(object: [PFObject]) -> [Request]{
+        var requestList = [Request]()
+        for x in object {
+            requestList.append(Request(
+                amount:        x["amount"] as! Float,
+                lat:           x["latitude"] as! Float,
+                long:          x["longitude"] as! Float,
+                requesterId:   x["requesterId"] as! String))
+        }
+        return requestList
+        
+    }
+    
 }
-
-
-

@@ -1,5 +1,9 @@
 PODS:
   - Bolts/Tasks (1.6.0)
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
+  - MGSwipeTableCell (1.5.3)
   - MoneyFramework (1.0.3)
   - Parse (1.12.0):
     - Bolts/Tasks (~> 1.5)
@@ -7,6 +11,8 @@ PODS:
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
+  - ChameleonFramework/Swift
+  - MGSwipeTableCell
   - MoneyFramework (= 1.0.3)
   - Parse
   - SwiftHTTP
@@ -14,6 +20,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Bolts: f52a250053bb517ca874523c3913776359ab3def
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  MGSwipeTableCell: 5ae3b9a15efda26b201adc8676b24040febe6ff6
   MoneyFramework: 8a002fc310275499990f176abef80f4ab8119fec
   Parse: de2c52a9a1421b91ae7594ab8ce191afd184f19b
   SwiftHTTP: 7e084af3bf628b17589c7b61a9df8750947a9813
