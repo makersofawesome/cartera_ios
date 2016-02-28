@@ -87,4 +87,14 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         var location = locations.first! as CLLocation
         lastLocation = location.coordinate
     }
+    
+    
+    @IBAction func logOutButton(sender: AnyObject) {
+        PFUser.logOut()
+        var currentUser = PFUser.currentUser()
+        
+    }
+    
+    
+    
 }

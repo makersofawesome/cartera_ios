@@ -90,7 +90,7 @@ class ComposeRequestViewController: UIViewController {
 
     @IBAction func onCompose(sender: AnyObject) {
         //need user and amount
-//        currentRequest = Request(params: composeParams())
+        currentRequest = Request(params: composeParams())
         currentRequest!.postOpenRequest( withCompletion: {
             (success: Bool, error: NSError?) -> Void in
             if success {

@@ -11,16 +11,18 @@ import Parse
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var userField: UITextField!
+    @IBOutlet weak var passwordField: UITextField! = nil
+    @IBOutlet weak var userField: UITextField! = nil
     @IBOutlet var mainView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = true
-        mainView.backgroundColor = UIColor(red: 63, green: 81, blue: 181, alpha: 255)
+//        mainView.backgroundColor = UIColor(red: 63, green: 81, blue: 181, alpha: 255) *unnecessary because of XIB
         // Do any additional setup after loading the view, typically from a nib.
         print("loaded")
+//        passwordField.delegate = nil
+//        userField.delegate = nil
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
@@ -58,5 +60,15 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
+    
+//    func textFieldShouldReturn(textField: UITextField) -> Bool {
+//        textField.resignFirstResponder()
+//        return true
+//    }
 }
 
