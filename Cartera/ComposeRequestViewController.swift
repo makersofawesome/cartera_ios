@@ -90,7 +90,11 @@ class ComposeRequestViewController: UIViewController {
 
     @IBAction func onCompose(sender: AnyObject) {
         //need user and amount
-        currentRequest = Request(params: composeParams())
+        currentRequest = Request(
+            amount:Int(amountField.text!)!,
+            lat: Float((location?.latitude)!),
+            long: Float((location?.longitude)!),
+            user:  _currentUser!)
         currentRequest!.postOpenRequest( withCompletion: {
             (success: Bool, error: NSError?) -> Void in
             if success {

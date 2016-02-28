@@ -18,10 +18,10 @@ class MainCell: UITableViewCell {
     @IBOutlet weak var amount: UILabel!
     
     var user: User!
-    
     var request: Request! {
         didSet {
             name.text = "\(request.requester.username!)"
+            amount.text = "$\(request.amount!)"
             //            avatarImage = UIImageView(frame: CGRectMake(0, 0, 100, 100))
 //            avatarImage.layer.cornerRadius = 8.0
 //            avatarImage.clipsToBounds = true

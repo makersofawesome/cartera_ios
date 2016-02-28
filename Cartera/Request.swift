@@ -16,16 +16,18 @@ class Request: NSObject {
     var amount: Int?
     var latitude: Float?
     var longitude: Float?
+    var id: Int?
     
     /*
      * Pass in params to initialize
      * needs user, amount, and geocode
      */
-    init(params: NSDictionary){
-        self.requester = params["user"] as! User
-        self.amount = params["amount"] as! Int
-        self.latitude = params["latitude"] as! Float
-        self.longitude = params["longitude"] as! Float
+    init(amount: Int, lat: Float, long: Float, user: User){
+        
+        self.amount = amount
+        self.latitude = lat
+        self.longitude = long
+        self.requester = user
         
     }
     
@@ -41,15 +43,45 @@ class Request: NSObject {
         }
     }
     
-    class func requestsWithArray(users: [User]) -> [Request] {
+    class func requestsWithArray(object: [PFObject]) -> [Request] {
         var requestList = [Request]()
-        
-        for user in users {
-            let params = ["user":user, "amount":1, "latitude":1, "longitude":1]
-            requestList.append(Request(params: params))
+        var requester: User?
+        var length = object.count, count = 0;
+        print("length = \(length)")
+        for x in object {
+            var query = PFQuery(className:"_User")
+            do {
+            let user = try query.getObjectWithId(x["requesterId"] as! String)
+            requester = User(object: user)
+            requestList.append(Request(
+                amount: x["amount"] as! Int,
+                lat: x["latitude"] as! Float,
+                long: x["longitude"] as! Float,
+                user: requester as! User!))
+            } catch let error as NSError {
+                print("error populating data \(error)")
+            }            /* query.getObjectInBackgroundWithId(x["requesterId"] as! String) {
+            (user: PFObject?, error: NSError?) -> Void in
+            if error == nil && user != nil {
+            requester = User(object: user!)
+            requestList.append(Request(
+            amount: x["amount"] as! Int,
+            lat: lat,
+            long: long,
+            user: requester as! User!))
+            print("count = \(count)")
+            
+            NSNotificationCenter.defaultCenter().postNotificationName(reloadNotification, object: nil)
+            
+            } else {
+            print("\(error)")
+            }
+            }
+            count++
+            */
         }
         return requestList
     }
-
+    
     
 }

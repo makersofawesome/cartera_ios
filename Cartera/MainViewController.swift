@@ -11,7 +11,7 @@ import Parse
 import CoreLocation
 
 var locationManager: CLLocationManager!
-
+let reloadNotification = "reloadNotification"
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
@@ -20,7 +20,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var lastLocation : CLLocationCoordinate2D!
     var users: [User]?
     var requests: [Request]?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,14 +33,15 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.distanceFilter = 200
         locationManager.requestWhenInUseAuthorization()
-        loadUsers()
+        loadData()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadTableView", name: reloadNotification, object: nil)
     }
-    func loadUsers() {
-        var query = PFQuery(className: "_User")
+    func loadData() {
+        var query = PFQuery(className: "Request")
         query.findObjectsInBackgroundWithBlock { (media: [PFObject]?, error: NSError?) -> Void in
             if let media = media {
-                self.users = User.usersWithArray(media)
-                self.requests = Request.requestsWithArray(self.users!)
+                self.requests = Request.requestsWithArray(media)
                 self.tableView.reloadData()
             } else {
                 // handle error
@@ -54,8 +54,13 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Dispose of any resources that can be recreated.
     }
     
+    func reloadTableView() {
+        print("reloading data")
+        tableView.reloadData()
+    }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let data = requests {
+            print(data.count)
             return data.count
         }
         else {
