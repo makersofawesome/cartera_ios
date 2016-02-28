@@ -58,10 +58,11 @@ class ComposeRequestViewController: UIViewController, UITextFieldDelegate {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     func getBalance(){
-        let json = Client.sharedClient.getAccountById(_currentUser!.accountId!)
+        print(_currentUser!.accountId)
+        Client.sharedClient.getAccountById(_currentUser!.accountId!)
     }
     @IBAction func onCompose(sender: AnyObject) {
-
+      //  getBalance()
         let amount = (String(amountField.text!.characters.dropFirst()))
         if amount.characters.count > 0 //&& Int(amount) <= getBalance() 
         {

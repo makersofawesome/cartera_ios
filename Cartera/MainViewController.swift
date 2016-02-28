@@ -26,8 +26,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.navigationController?.navigationBar.barTintColor = FlatPurpleDark()
         locationManager = CLLocationManager()
         locationManager.requestWhenInUseAuthorization()
-        //self.navigationItem.setHidesBackButton(true, animated:false)
-        //self.navigationItem.backBarButtonItem?.image = UIImage(named: "log out temp")
         tableView.delegate = self
         tableView.dataSource = self
         locationManager.delegate = self
@@ -36,9 +34,14 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         locationManager.requestWhenInUseAuthorization()
         loadData()
     }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+         self.navigationController?.navigationBarHidden = false
+    }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
         loadData()
+        
     }
     func loadData() {
         if (lastLocation != nil){
@@ -56,7 +59,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
             query.findObjectsInBackgroundWithBlock{ (media: [PFObject]?, error: NSError?) -> Void in
                 if let media = media {
-                    self.requests = Request.requestsWithArray(media)
+                    self.requests = Request.requestsWithArray(media).reverse()
+                    
                     self.tableView.reloadData()
                 } else {
                     print(error)
@@ -75,7 +79,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let data = requests {
-            //print(data.count)
+            print(data.count)
             return data.count
         }
         else {
@@ -87,6 +91,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCellWithIdentifier("Main Cell", forIndexPath: indexPath) as! MainCell
         let request = requests![indexPath.row]
         let user = User(id: request.requesterId!)
+        print("request id is \(user.firstName)")
         cell.request = request
         cell.user = user
         
@@ -100,12 +105,21 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //cell.leftButtons = [deleteButton]
         return cell
     }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+         let cell = tableView.dequeueReusableCellWithIdentifier("Main Cell", forIndexPath: indexPath) as! MainCell
+        let request = requests![indexPath.row]
+        self.performSegueWithIdentifier("toDetails", sender: request)
+    }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "composeSegue" {
             let vc = segue.destinationViewController as! ComposeRequestViewController
             vc.location = lastLocation
             
+        }
+        else if segue.identifier == "toDetails" {
+            let vc = segue.destinationViewController as! DetailsViewController
+            vc.request = sender as! Request
         }
     }
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {

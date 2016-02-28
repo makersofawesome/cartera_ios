@@ -42,7 +42,7 @@ class Client: NSObject {//NSEClient {
         }
         return JSON(data: data)
     }
-    func getAccountById(id: String ) {
+    func getAccountById(id: String ){
         
         let url: NSURL = NSURL(string: createRequestUrl("accounts/\(id)"))!
         let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
@@ -50,14 +50,13 @@ class Client: NSObject {//NSEClient {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.HTTPMethod = "GET"
         
-        print(NSString(data: request.HTTPBody!, encoding:NSUTF8StringEncoding)!)
-        
         let queue:NSOperationQueue = NSOperationQueue()
         NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler:{ (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
             if response != nil{
                 do {
                     let parsed = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
-                    print(parsed)
+                   // return parsed.valueForKey("balance") as Int
+                    print(parsed.valueForKey("balance"))
                 }
                 catch let error as NSError {
                     print("A JSON parsing error occurred, here are the details:\n \(error)")

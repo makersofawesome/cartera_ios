@@ -16,24 +16,41 @@ class Request: NSObject {
     var amount: Float?
     var latitude: Float?
     var longitude: Float?
+    var createdAt: NSDate?
     /*
      * Pass in params to initialize
      * needs user, amount, and geocode
      */
+    init(amount: Float, lat: Float, long: Float, requesterId: String, timestamp: String){
+        
+        self.amount = amount
+        self.latitude = lat
+        self.longitude = long
+        self.requesterId = requesterId
+        let formatter = NSDateFormatter()
+        //"2016-02-28T07:42:50.075Z"
+        formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
+        let date = formatter.dateFromString(timestamp)
+        self.createdAt = date
+    
+    }
+    init(amount: Float, lat: Float, long: Float, requesterId: String, time: NSDate){
+        self.amount = amount
+        self.latitude = lat
+        self.longitude = long
+        self.requesterId = requesterId
+        self.createdAt = time
+    }
     init(amount: Float, lat: Float, long: Float, requesterId: String){
         
         self.amount = amount
         self.latitude = lat
         self.longitude = long
         self.requesterId = requesterId
-        
     }
-    
-    
     func postOpenRequest(withCompletion completion: PFBooleanResultBlock?) {
         let post = PFObject(className: "Request")
         if requesterId != nil {
-            //print("requester id \(requesterId)")
             post.setObject(requesterId!, forKey: "requesterId")
             post.setObject(amount!, forKey: "amount")
             post.setObject(latitude!, forKey: "latitude")
@@ -41,32 +58,16 @@ class Request: NSObject {
             post.saveInBackgroundWithBlock(completion)
         }
     }
-    func requesterObject(completion: (PFObject) -> ()) {
-        let query = PFQuery(className: "_User")
-        query.getObjectInBackgroundWithId(requesterId!) { (object, error) -> Void in
-            if error != nil && object != nil{
-                completion(object!)
-            } else {
-                print(error)
-            }
-        }
-    
-    }
-    func requester(completion: (User) -> ()){
-        var userObject: PFObject?
-         requesterObject{(object) -> () in
-            completion(User(object: object))
-        }
-        
-    }
     class func requestsWithArray(object: [PFObject]) -> [Request]{
         var requestList = [Request]()
         for x in object {
+           // print(x)
             requestList.append(Request(
                 amount:        x["amount"] as! Float,
                 lat:           x["latitude"] as! Float,
                 long:          x["longitude"] as! Float,
-                requesterId:   x["requesterId"] as! String))
+                requesterId:   x["requesterId"] as! String,
+                time:          x.createdAt!))
         }
         return requestList
         

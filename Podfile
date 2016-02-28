@@ -10,5 +10,7 @@ target 'Cartera' do
   pod 'MoneyFramework', '1.0.3'
   pod 'MGSwipeTableCell'
   pod 'ChameleonFramework/Swift'
+  pod 'FGInitialsCircleSwift'
 end
+
 

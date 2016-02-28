@@ -7,13 +7,21 @@
 //
 
 import UIKit
+import MapKit
 
 class DetailsViewController: UIViewController {
-
+    
+    @IBOutlet weak var codeField: UITextField!
+    @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var requesterName: UILabel!
+    var request: Request?
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.navigationController?.navigationBarHidden = true
+        let user = User(id: (request?.requesterId)!)
+        let amt = String(format: "%\(0.2)f", request!.amount!)
+        amountLabel.text = "$\(amt)"
+        requesterName.text = "\(user.firstName!) \(user.lastName!)"
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +29,34 @@ class DetailsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func onOpenMap(sender: AnyObject) {
+        
+        var lat: CLLocationDegrees?
+        var long: CLLocationDegrees?
+        lat = Double((request?.latitude)!)
+        long = Double((request?.longitude)!)
+        let regionDistance:CLLocationDistance = 10000
+        
+        var coordinates = CLLocationCoordinate2DMake(lat!,long!)
+        let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
+        var options = [
+            MKLaunchOptionsMapCenterKey: NSValue(MKCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(MKCoordinateSpan: regionSpan.span)
+        ]
+        var placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        var mapItem = MKMapItem(placemark: placemark)
+//        mapItem.name = "\(self.venueName)"
+        mapItem.openInMapsWithLaunchOptions(options)
     }
-    */
+
+    @IBAction func onCancel(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
+
+  
 
 }
