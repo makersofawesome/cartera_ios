@@ -6,6 +6,14 @@ Cartera.xcworkspace/xcuserdata/
 ## Build generated
 build/
 DerivedData/
+# Build generated
+build/
+DerivedData/
+Cartera/Assets.xcassets
+Cartera.xcodeproj/project.pbxproj
+Cartera/Assets.xcassets/AppIcon.appiconset/Contents.json
+Cartera.xcodeproj/
+Cartera.xcworkspace/
 
 ## Various settings
 *.pbxuser
