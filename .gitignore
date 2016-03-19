@@ -1,19 +1,14 @@
 # Xcode
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
-Pods/Pods.xcodeproj/xcuserdata/
-Cartera.xcworkspace/xcuserdata/
 ## Build generated
 build/
 DerivedData/
-# Build generated
-build/
-DerivedData/
-Cartera/Assets.xcassets
-Cartera.xcodeproj/project.pbxproj
-Cartera/Assets.xcassets/AppIcon.appiconset/Contents.json
-Cartera.xcodeproj/
-Cartera.xcworkspace/
+#QSport/Assets.xcassets
+QSport.xcodeproj/project.pbxproj
+#QSport/Assets.xcassets/AppIcon.appiconset/Contents.json
+QSport.xcodeproj/
+QSport.xcworkspace/
 
 ## Various settings
 *.pbxuser
@@ -26,6 +21,7 @@ Cartera.xcworkspace/
 !default.perspectivev3
 xcuserdata/
 
+<<<<<<< HEAD
 ## Other
 *.moved-aside
 *.xccheckout
@@ -69,3 +65,5 @@ Carthage/Build
 
 fastlane/report.xml
 fastlane/screenshots
+=======
+>>>>>>> dev

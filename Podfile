@@ -4,6 +4,11 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'Cartera' do
-  pod 'AFNetworking'
+  pod 'SwiftHTTP'
+  pod 'SwiftyJSON'
+  pod 'Parse'
+  pod 'MoneyFramework', '1.0.3'
+  pod 'MGSwipeTableCell'
+  pod 'ChameleonFramework/Swift'
+  pod 'FGInitialsCircleSwift'
 end
-
